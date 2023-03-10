@@ -37,23 +37,24 @@ const EventPage = () => {
       alert(
         "Event end date should not be before setup date or event start date"
       );
-    } else if (eventStartDate - setupDate > 86400000) {
+    } else if (eventStartDate - setupDate < 86400000) {
       alert("Setup date can not be more than 1 day before event");
     } else {
-      setErrorMsg("");
+      //setErrorMsg("");
+      alert('Thank you');
+      window.location = "/";
     }
   };
   const isFormValid = () => {
     return (
       eventStartDate && eventEndDate && setupDate && location && paymentMethod
     );
-  };
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    validateDates();
-    // handle form submission
-    alert("Than you");
-    window.location = "/";
+    validateDates()
+      // handle form submission
   };
   const calculateDuration = () => {
     const start = new Date(eventStartDate);
@@ -148,7 +149,7 @@ const EventPage = () => {
       {errorMsg && <p>{errorMsg}</p>}
       {eventStartDate && eventEndDate && setupDate && (
         <p>
-          Event Duration: {calculateDuration()} <span>thank you</span>
+          Event Duration: <span>{calculateDuration()}</span>
         </p>
       )}
     </div>
