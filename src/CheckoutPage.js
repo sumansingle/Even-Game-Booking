@@ -43,11 +43,17 @@ const EventPage = () => {
       setErrorMsg("");
     }
   };
-
+  const isFormValid = () => {
+    return (
+      eventStartDate && eventEndDate && setupDate && location && paymentMethod
+    );
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     validateDates();
     // handle form submission
+    alert("Than you");
+    window.location = "/";
   };
   const calculateDuration = () => {
     const start = new Date(eventStartDate);
@@ -135,7 +141,9 @@ const EventPage = () => {
           <label>Distance:</label>
           <span>{distance} km</span>
         </div>
-        <button type="submit">Make Enquiry</button>
+        <button type="submit" disabled={!isFormValid()}>
+          Make Enquiry
+        </button>
       </form>
       {errorMsg && <p>{errorMsg}</p>}
       {eventStartDate && eventEndDate && setupDate && (
